@@ -1,1 +1,222 @@
-<a href=index.htm>hkmenu...</a>
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>地獄廚房</title>
+    
+    <!-- Google Fonts 文青字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
+    <!-- 文青風自訂樣式 -->
+    <style>
+      body {
+        background-color: #fdfaf6;
+        color: #3e3e3e;
+        font-family: "Noto Serif TC", "Helvetica", "微軟正黑體", serif;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+  h3 {
+  font-size: 32px; 
+  color: #2c2c2c;
+  font-weight: bold;
+  margin-top: 1.5em;
+}
+      h4 {
+        font-size: 20px;
+        color: #2c2c2c;
+        font-weight: bold;
+        margin-top: 1.2em;
+      }
+
+      p {
+        font-size: 16px;
+        margin-bottom: 1em;
+      }
+
+      ul li {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .nav-tabs .nav-link {
+        color: #6e5843;
+        font-size: 16px;
+      }
+
+      .nav-tabs .nav-link.active {
+        background-color: #e8dccf;
+        color: #2f2f2f;
+        font-weight: bold;
+        border-color: #d9cfc1 #d9cfc1 #fdfaf6;
+        font-size: 17px;
+      }
+
+      .carousel-item img,
+      .tab-pane img {
+        border: 2px solid #d3cbbf;
+        border-radius: 8px;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      }
+
+      strong {
+        color: #6b4226;
+      }
+    </style>
+  </head>
+  <body class="p-4">
+
+    <!-- 導覽列 -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="intro-tab" data-bs-toggle="tab" data-bs-target="#intro" type="button" role="tab">餐廳介紹</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu" type="button" role="tab">菜單內容</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="special-tab" data-bs-toggle="tab" data-bs-target="#special" type="button" role="tab">地獄廚房鎮店之寶</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link disabled" type="button" aria-disabled="true">好康的</button>
+      </li>
+    </ul>
+
+    <!-- 內容區 -->
+    <div class="tab-content mt-4" id="myTabContent">
+      
+      <!-- 餐廳介紹 -->
+      <div class="tab-pane fade show active" id="intro" role="tabpanel">
+        <h3>歡迎來到地獄廚房！</h3>
+        <p>警告:這裡的每道菜都參雜黑色幽默，若您對黑色幽默過敏，請勿服用！</p>
+        <p>
+          充斥著各種歷史地獄梗，所有的地獄梗都會以介紹菜品的形式呈現，目標將鎖定在中國史，每一道「菜品」背後都融合了歷史背景與文化元素，
+          餐廳創立初衷是希望以輕鬆黑色幽默的方式來呈現，也藉由這些創意的呈現方式，讓使用者不僅能在輕鬆中獲得歷史知識，還能藉此重新審視、注意那些沉重的血淚過往。
+        </p>
+
+        <!-- 圖片輪播區 -->
+        <div id="carouselExample" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="image/比干雞心.png" class="d-block w-25" alt="比干雞心">
+            </div>
+            <div class="carousel-item">
+              <img src="image/五香車裂肉.png" class="d-block w-25" alt="五香車裂肉">
+            </div>
+              <div class="carousel-item">
+              <img src="image/子路肉醬麵.png" class="d-block w-25" alt="子路肉醬麵">
+            </div>
+            <div class="carousel-item">
+             <img src="image/鹿馬趙高腦花.png" alt="趙高腦花" width="300">
+          </div>
+             <div class="carousel-item">
+           <img src="image/剁椒李斯腰11.png" alt="李斯腰" width="300">
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 菜單內容 -->
+      <div class="tab-pane fade" id="menu" role="tabpanel">
+        <h4>HK菜單</h4>
+        <ul>
+          <li>家常菜：子路肉醬義大利麵</li>
+          <img src="image/子路肉醬麵.png" class="d-block w-25" alt="子路肉醬麵">
+          <p>子路義大利麵</p>
+          <p>碎骨無全，猶提劍立；此麵無形，卻滿是忠魂。/價格:HK100</p>
+          <p>子路，孔門勇士，春秋亂世中以義為命。仕衛國時逢政變，挺身救主，遭敵破腹、腸出體外，仍提劍而戰，不屈不倒。最終壯烈戰死，死後更傳被碎屍於市，血濺忠骨，義貫九泉。
+          本道義大利麵取其烈義之象，手工捲麵形如盤腸，佐以紅酒慢熬肉醬，濃烈鮮香，灑下香草碎與黑胡椒，彷彿硝煙與血雨共炊。
+           一口咀嚼，是忠骨之碎，烈士無全屍，義氣永流傳。</p>
+          <p>食材內容:</p>
+          <p>仲由，字子路</p>
+          <p>春秋末期，魯國人，孔子的弟子之一，孔門「十哲」之一，剛直勇敢、崇尚義氣、言行果決。擅武，敢言，是孔門中最具「行動力」與「忠勇之氣」者。</p>
+          <p>歷史出處:「子路仕衛，與孔悝相事。孔悝為人所攻，子路救之。力戰而死，並裂其腹，腸出，猶提劍立鬥不止，遂死。」</p>
+          <li>主廚私心推薦：鹿馬趙高腦花</li>
+          <img src="image/鹿馬趙高腦花.png" alt="趙高腦花" width="300">
+          <p>鹿馬趙高腦花</p>
+          <p>鹿馬顛倒，腦花亂舞；誤國一人，豈止三族/價錢:HK250 </p>
+          <P>趙高，秦末宦權之最，操控朝政，誣陷李斯，毒手扶蘇，最終連胡亥也遭其毒計。指鹿為馬，試臣之忠；誅族無數，亂國致亡。
+           本菜取豬腦蒸煮微燉，以花椒、剁椒、米酒調味，質地軟糯卻入口驚悚。紅油覆面如血，腦紋盤曲似權謀之路，錯綜詭譎。
+          此菜入口即化，卻暗藏警世：若讓奸臣得志，國將何存？</p>
+          <P>食材內容:</P>
+          <P>趙高（？－公元前207年）</P>
+          <p>秦朝宦官、權臣、酷吏代表人物。原為中車府令，掌管皇帝的車馬及內廷事務，與李斯共謀偽詔，擅改遺詔，立胡亥為帝，迫害扶蘇。日後設計誣陷李斯並將其腰斬，獨攬大權，弄權誤國。最惡名昭著之舉是「指鹿為馬」，用以試探朝臣、鞏固權勢。
+           後因擔心皇帝知情，設計殺胡亥；最終自己亦被秦國內亂誅殺。</P>
+          <p>《史記·秦始皇本紀》：「趙高恐事覺，乃謀殺二世。二世將兵誅之。趙高懼，曰：『臣罪當誅，願自裁。』二世不許，遂誅趙高三族。」</p>
+          <p>《史記·趙高列傳》：「高為人多權變而心狠毒…乃置鹿於庭，引群臣謂之馬。或默然，或曰馬。高曰：『以鹿為馬，臣欺君也。』遂誅之。」</p>   
+          <li>
+            特別的菜：比干雞心、剁椒李斯腰
+            <br>
+            <img src="image/比干雞心.png" class="d-block w-25 mt-2" alt="比干雞心">
+          </li> 
+          <p>比干雞心 </p>
+          <p>一心為國，七竅皆忠。/價格:HK400 </p>
+          <P>相傳商朝忠臣比干，因諫言觸怒暴君紂王，被斥為「聖人之心有七竅」，竟遭活剖驗心。忠魂未泯，千古傳頌。</p>
+          <P>本道菜選用雞心入味，以秘制五香與微辛中藥慢燉，象徵忠義之心歷百鍊猶存。盤中七顆雞心環繞盛盤，寓意「七竅之心」，也向千古忠臣致敬。
+            每咀嚼一口，不僅是滋味濃郁，更是對歷史血淚的凝思。</P> 
+           <P> 食材內容:</P>
+           <P>比干（？－約公元前11世紀）</P>
+           <P>身分:是商朝末年賢臣，周文王時代人。《史記》與《尚書》皆記其忠直剛諫，為商紂王的叔父，任少師之職，堪稱「三仁」之一（與箕子、微子並列）。</P>
+           <P>歷史出處:
+            1. 《史記·殷本紀》：
+           「紂為酒池肉林，以男女裸相逐其間，令曰長夜之飲。比干諫，曰：『為人君者，行仁政，遠色以為明。』紂怒曰：『聞聖人心有七竅，欲剖而視之。』遂殺比干。」</P>
+          <P> 2. 《列女傳·卷一·貞順傳·殷比干妻》：
+          「紂殺比干，剖心視之。比干妻抱子逃於林中，子名堅，後為箕子所養。」
+          </p>
+
+          <p>剁椒李斯腰</p>
+          <img src="image/剁椒李斯腰11.png" alt="李斯腰" width="300">
+          <p>一代權臣，一朝腰斬；焚書有餘烈，辣味透三脈。/價錢:HK500</P>
+          <P>李斯，秦之丞相，智計絕倫，協助始皇一統天下，焚書坑儒，專行法治。然而權謀反噬，終被趙高誣陷，腰斬咸陽，骨肉分離。
+            本菜選用豬腰精切入味，以剁椒爆香猛炒，辣中帶烈，似秦政肅殺；腰身翻卷，象徵李斯悲劇命運。一口入口，乃權力之香，一抹餘辣，猶似權臣末路。願食者敬思：功過難論，唯歷史作證。</P>
+          <p>食材內容:</p>
+          <p>李斯（？－公元前208年)</p>
+          <p>是戰國末至秦朝初年重要的法家人物，原為楚國人，後成為秦始皇的重臣與丞相。是秦朝統一六國的重要推手之一。
+          主張「焚書坑儒」、推行郡縣制、集中中央集權。然而秦始皇死後，他與宦官趙高聯手立胡亥為帝，後反被趙高誣陷，最終被腰斬於咸陽市，子孫也遭誅殺。</p>
+          <P>歷史出處:《史記·李斯列傳》：「使者至，收李斯與其子。皆腰斬於咸陽市，夷三族。」李斯死前還與兒子同車赴刑場，痛哭訣別，其言語悲涼動人。「願從子之後，復牽黃犬，俱出上蔡東門，逐狡兔，如故耳！」</P>
+          <li>
+            <strong>輸不起就別玩：</strong>商鞅車裂肉
+            <br>
+            <img src="image/五香車裂肉.png" class="d-block w-25 mt-2" alt="五香車裂肉">
+          </li> 
+           <p>商鞅車裂肉（五香口味）</p>
+          <P>吃下他，也許你會更守法。/價格:HK300</p>
+           <P>商鞅立法嚴明，人人聞之色變；然秦孝公一去，權貴反撲，法家代表竟死於自己立下的律條。
+           五馬分屍之刑，今化為五香分肉之宴。每一塊精心分切的肉，都代表一段改革的血與骨。
+           勿懼名諱，吃吧。品其香，也敬其魂。</P>
+           <P>食材內容:</P>
+           <P>商鞅（公元前338年）</P>
+           <P>身份：戰國時期秦國變法家、法家代表人物。</P>
+           <P>歷史出處：《史記·商君列傳》：「孝公卒，太子立，是為惠文王，而商君因以太子罪誅之，曰商君反，遂車裂之，虛其家。</P>
+        </ul>
+      </div>
+
+      <!-- 鎮店之寶 -->
+      <div class="tab-pane fade" id="special" role="tabpanel">
+        <h4>本店招牌</h4>
+        <p>志摩機殼殘骸雞尾酒/價格:HK800</P>
+        <P>給您最屍情化意的體驗，前調為酸甜的戀愛，中調為刺激的墜落感，尾調是混雜徐志摩人生的跑馬燈複雜口感。</P>
+        <img src="momo.jpg" alt="招牌菜示意圖" width="450" class="img-fluid">
+        <p>
+          歷史事件：濟南號空難發生於1931年11月19日，一架司汀遜式九缸七座郵政飛機搭載一名乘客與兩名駕駛員，因天雨霧大，墜毀於中國山東濟南山區，機上三人包括詩人徐志摩全數罹難。
+          該機為中國航空所有、由中華郵政承包，自南京明故宮機場飛往北平南苑機場。徐志摩此行為聽建築師林徽音演講，儘管已被告知途中天氣惡劣，仍堅持搭機前往。
+        </p>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </body>
+</html>
