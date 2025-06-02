@@ -17,34 +17,37 @@
         background-color: #fdfaf6;
         color: #3e3e3e;
         font-family: "Noto Serif TC", "Helvetica", "微軟正黑體", serif;
-        font-size: 17px;
-        line-height: 1.8;
+        font-size: 16px;
+        line-height: 1.7;
       }
 
       h3 {
-        font-size: 30px;
+        font-size: 32px;
         color: #2c2c2c;
         font-weight: bold;
         margin-top: 1.5em;
-        margin-bottom: 1em;
       }
 
       h4 {
-        font-size: 22px;
+        font-size: 20px;
         color: #2c2c2c;
         font-weight: bold;
         margin-top: 1.2em;
-        margin-bottom: 0.6em;
       }
 
-      p, li {
-        font-size: 17px;
-        margin-bottom: 0.75em;
+      p {
+        font-size: 16px;
+        margin-bottom: 1em;
+      }
+
+      ul li {
+        font-size: 16px;
+        margin-bottom: 10px;
       }
 
       .nav-tabs .nav-link {
         color: #6e5843;
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .nav-tabs .nav-link.active {
@@ -52,7 +55,7 @@
         color: #2f2f2f;
         font-weight: bold;
         border-color: #d9cfc1 #d9cfc1 #fdfaf6;
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .carousel-item img,
@@ -64,22 +67,6 @@
 
       strong {
         color: #6b4226;
-      }
-
-      canvas {
-        border: 6px dashed #d3cbbf;
-        border-radius: 50%;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-        background-color: #fdfaf6;
-        margin: 0 auto;
-      }
-
-      .btn-spin {
-        font-family: "Noto Serif TC", serif;
-        font-size: 18px;
-        border-radius: 8px;
-        padding: 10px 20px;
-        margin-top: 20px;
       }
     </style>
   </head>
@@ -112,111 +99,113 @@
           充斥著各種歷史地獄梗，所有的地獄梗都會以介紹菜品的形式呈現，目標將鎖定在中國史，每一道「菜品」背後都融合了歷史背景與文化元素，
           餐廳創立初衷是希望以輕鬆黑色幽默的方式來呈現，也藉由這些創意的呈現方式，讓使用者不僅能在輕鬆中獲得歷史知識，還能藉此重新審視、注意那些沉重的血淚過往。
         </p>
+      <!-- 🔮 轉盤標題 -->
+<h3 class="text-center mt-5">今天你想來一點...?...</h3>
+<div class="d-flex justify-content-center">
+  <canvas id="wheelCanvas" width="400" height="400"></canvas>
+</div>
+<div class="text-center mt-3">
+  <button class="btn btn-outline-dark" onclick="spinWheel()">轉吧！你們這群搶光學餐的餓死鬼。</button>
+</div>
 
-        <!-- ✨ 插入轉盤區塊 -->
-        <section class="text-center mt-5 mb-5">
-          <h3>今晚你想來點?</h3>
-          <canvas id="wheelCanvas" width="400" height="400"></canvas>
-          <div>
-            <button class="btn btn-outline-dark btn-spin" onclick="spinWheel()">轉吧，一群搶學餐的餓死鬼。</button>
-          </div>
-        </section>
+<!-- 🎨 CSS 文青風樣式 -->
+<style>
+  canvas {
+    border: 6px dashed #d3cbbf;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fdfaf6;
+  }
+  button {
+    font-family: "Noto Serif TC", serif;
+    font-size: 18px;
+  }
+</style>
 
-        <!-- 圖片輪播區等保留原樣 -->
+<!-- ⚙️ JavaScript 功能 -->
+<script>
+  const canvas = document.getElementById("wheelCanvas");
+  const ctx = canvas.getContext("2d");
 
-      </div>
+  const options = [
+    "比干雞心",
+    "商鞅車裂肉",
+    "子路肉醬義大利麵",
+    "鹿馬趙高腦花",
+    "剁椒李斯腰",
+    "志摩機殼殘骸雞尾酒",
+    "你沒錢，笑你"
+  ];
 
-      <!-- 其他 tab-pane 區塊也照原樣繼續放 -->
+  let startAngle = 0;
+  let arc = Math.PI * 2 / options.length;
+  let spinAngle = 0;
+  let spinning = false;
 
-    </div>
+  function drawWheel() {
+    for (let i = 0; i < options.length; i++) {
+      const angle = startAngle + i * arc;
+      ctx.fillStyle = i % 2 === 0 ? "#e8dccf" : "#f6f1e7";
+      ctx.beginPath();
+      ctx.moveTo(200, 200);
+      ctx.arc(200, 200, 200, angle, angle + arc);
+      ctx.fill();
 
-    <script>
-      const canvas = document.getElementById("wheelCanvas");
-      const ctx = canvas.getContext("2d");
+      ctx.save();
+      ctx.translate(200, 200);
+      ctx.rotate(angle + arc / 2);
+      ctx.fillStyle = "#3e3e3e";
+      ctx.font = "16px Noto Serif TC";
+      ctx.textAlign = "right";
+      ctx.fillText(options[i], 180, 10);
+      ctx.restore();
+    }
 
-      const options = [
-        "比干雞心",
-        "商鞅車裂肉",
-        "子路肉醬義大利麵",
-        "鹿馬趙高腦花",
-        "剁椒李斯腰",
-        "志摩機殼殘骸雞尾酒",
-        "你沒錢，笑你"
-      ];
+    // 畫中心箭頭
+    ctx.beginPath();
+    ctx.moveTo(200, 0);
+    ctx.lineTo(190, 20);
+    ctx.lineTo(210, 20);
+    ctx.closePath();
+    ctx.fillStyle = "#6e5843";
+    ctx.fill();
+  }
 
-      let startAngle = 0;
-      const arc = Math.PI * 2 / options.length;
-      let spinning = false;
+  function spinWheel() {
+    if (spinning) return;
+    spinning = true;
 
-      function drawWheel() {
-        for (let i = 0; i < options.length; i++) {
-          const angle = startAngle + i * arc;
-          ctx.fillStyle = i % 2 === 0 ? "#e8dccf" : "#f6f1e7";
-          ctx.beginPath();
-          ctx.moveTo(200, 200);
-          ctx.arc(200, 200, 200, angle, angle + arc);
-          ctx.closePath();
-          ctx.fill();
+    const duration = 4000;
+    const finalAngle = Math.random() * Math.PI * 2 + Math.PI * 10;
+    const start = performance.now();
 
-          ctx.save();
-          ctx.translate(200, 200);
-          ctx.rotate(angle + arc / 2);
-          ctx.fillStyle = "#3e3e3e";
-          ctx.font = "16px 'Noto Serif TC'";
-          ctx.textAlign = "right";
-          ctx.fillText(options[i], 180, 10);
-          ctx.restore();
-        }
+    function animate(time) {
+      const elapsed = time - start;
+      if (elapsed < duration) {
+        const ease = (t) => 1 - Math.pow(1 - t, 3); // ease out cubic
+        const t = ease(elapsed / duration);
+        startAngle = (finalAngle * t) % (Math.PI * 2);
+        ctx.clearRect(0, 0, 400, 400);
+        drawWheel();
+        requestAnimationFrame(animate);
+      } else {
+        startAngle = finalAngle % (Math.PI * 2);
+        ctx.clearRect(0, 0, 400, 400);
+        drawWheel();
+        spinning = false;
 
-        // 中心箭頭
-        ctx.beginPath();
-        ctx.moveTo(200, 0);
-        ctx.lineTo(190, 20);
-        ctx.lineTo(210, 20);
-        ctx.closePath();
-        ctx.fillStyle = "#6e5843";
-        ctx.fill();
+        const selected = Math.floor((options.length - (startAngle / arc)) % options.length);
+        setTimeout(() => {
+          alert(`我猜你想吃... —— ${options[selected]}`);
+        }, 500);
       }
+    }
 
-      function spinWheel() {
-        if (spinning) return;
-        spinning = true;
+    animate(start);
+  }
 
-        const duration = 4000;
-        const finalAngle = Math.random() * Math.PI * 2 + Math.PI * 10;
-        const start = performance.now();
-
-        function animate(time) {
-          const elapsed = time - start;
-          if (elapsed < duration) {
-            const ease = (t) => 1 - Math.pow(1 - t, 3);
-            const t = ease(elapsed / duration);
-            startAngle = (finalAngle * t) % (Math.PI * 2);
-            ctx.clearRect(0, 0, 400, 400);
-            drawWheel();
-            requestAnimationFrame(animate);
-          } else {
-            startAngle = finalAngle % (Math.PI * 2);
-            ctx.clearRect(0, 0, 400, 400);
-            drawWheel();
-            spinning = false;
-
-            const selected = Math.floor((options.length - (startAngle / arc)) % options.length);
-            setTimeout(() => {
-              alert(`我猜你想吃... ——「${options[selected]}」`);
-            }, 500);
-          }
-        }
-
-        animate(start);
-      }
-
-      drawWheel();
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-  </body>
-</html>
+  drawWheel();
+</script>
 
         <!-- 圖片輪播區 -->
         <div id="carouselExample" class="carousel slide">
@@ -343,4 +332,4 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   </body>
-</html>
+</html> 
