@@ -99,6 +99,113 @@
           充斥著各種歷史地獄梗，所有的地獄梗都會以介紹菜品的形式呈現，目標將鎖定在中國史，每一道「菜品」背後都融合了歷史背景與文化元素，
           餐廳創立初衷是希望以輕鬆黑色幽默的方式來呈現，也藉由這些創意的呈現方式，讓使用者不僅能在輕鬆中獲得歷史知識，還能藉此重新審視、注意那些沉重的血淚過往。
         </p>
+      <!-- 🔮 轉盤標題 -->
+<h3 class="text-center mt-5">今晚的命運料理是...</h3>
+<div class="d-flex justify-content-center">
+  <canvas id="wheelCanvas" width="400" height="400"></canvas>
+</div>
+<div class="text-center mt-3">
+  <button class="btn btn-outline-dark" onclick="spinWheel()">轉吧！轉盤！</button>
+</div>
+
+<!-- 🎨 CSS 文青風樣式 -->
+<style>
+  canvas {
+    border: 6px dashed #d3cbbf;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    background-color: #fdfaf6;
+  }
+  button {
+    font-family: "Noto Serif TC", serif;
+    font-size: 18px;
+  }
+</style>
+
+<!-- ⚙️ JavaScript 功能 -->
+<script>
+  const canvas = document.getElementById("wheelCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const options = [
+    "比干雞心",
+    "商鞅車裂肉",
+    "子路肉醬義大利麵",
+    "鹿馬趙高腦花",
+    "剁椒李斯腰",
+    "志摩機殼殘骸雞尾酒",
+    "你沒錢，笑你"
+  ];
+
+  let startAngle = 0;
+  let arc = Math.PI * 2 / options.length;
+  let spinAngle = 0;
+  let spinning = false;
+
+  function drawWheel() {
+    for (let i = 0; i < options.length; i++) {
+      const angle = startAngle + i * arc;
+      ctx.fillStyle = i % 2 === 0 ? "#e8dccf" : "#f6f1e7";
+      ctx.beginPath();
+      ctx.moveTo(200, 200);
+      ctx.arc(200, 200, 200, angle, angle + arc);
+      ctx.fill();
+
+      ctx.save();
+      ctx.translate(200, 200);
+      ctx.rotate(angle + arc / 2);
+      ctx.fillStyle = "#3e3e3e";
+      ctx.font = "16px Noto Serif TC";
+      ctx.textAlign = "right";
+      ctx.fillText(options[i], 180, 10);
+      ctx.restore();
+    }
+
+    // 畫中心箭頭
+    ctx.beginPath();
+    ctx.moveTo(200, 0);
+    ctx.lineTo(190, 20);
+    ctx.lineTo(210, 20);
+    ctx.closePath();
+    ctx.fillStyle = "#6e5843";
+    ctx.fill();
+  }
+
+  function spinWheel() {
+    if (spinning) return;
+    spinning = true;
+
+    const duration = 4000;
+    const finalAngle = Math.random() * Math.PI * 2 + Math.PI * 10;
+    const start = performance.now();
+
+    function animate(time) {
+      const elapsed = time - start;
+      if (elapsed < duration) {
+        const ease = (t) => 1 - Math.pow(1 - t, 3); // ease out cubic
+        const t = ease(elapsed / duration);
+        startAngle = (finalAngle * t) % (Math.PI * 2);
+        ctx.clearRect(0, 0, 400, 400);
+        drawWheel();
+        requestAnimationFrame(animate);
+      } else {
+        startAngle = finalAngle % (Math.PI * 2);
+        ctx.clearRect(0, 0, 400, 400);
+        drawWheel();
+        spinning = false;
+
+        const selected = Math.floor((options.length - (startAngle / arc)) % options.length);
+        setTimeout(() => {
+          alert(`今晚你將品嚐 —— ${options[selected]}`);
+        }, 500);
+      }
+    }
+
+    animate(start);
+  }
+
+  drawWheel();
+</script>
 
         <!-- 圖片輪播區 -->
         <div id="carouselExample" class="carousel slide">
